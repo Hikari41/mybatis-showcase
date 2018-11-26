@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace对应的dao接口-->
+<mapper namespace="com.cheer.mybatis.dao.BlogMapper">
+    <!-- id是方法名 #{id}是方法参数 -->
+    <select id="getBlog" resultType="Blog">
+    select * from Blog where id = #{id}
+    </select>
+
+    <select id="getAll" resultType="Blog">
+    select * from Blog order by id
+    </select>
+
+    <insert id="insert">
+    insert into Blog values (#{id},#{title},#{author})
+    </insert>
+
+    <delete id="delete">
+        delete from blog where id = #{id}
+    </delete>
+
+    <update id="update">
+        update blog set title = #{title}, author = #{author} where id = #{id}
+    </update>
+
+    <select id="getPage" resultType="Blog">
+        select * from blog order by id limit #{offset},#{pageSize}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(*) from blog order by id
+    </select>
+    
+    <select id="selectPerson" resultType="hashmap">
+        select * from person order by id
+    </select>
+</mapper>
